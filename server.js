@@ -13,6 +13,12 @@ const app = express();
 app.use(morgan('common'));
 app.use(express.json());
 
+app.use(express.static('public'));
+app.get('/', (req, res) => {
+  console.log('Checking route');
+  res.sendFile('index');
+});
+
 app.get('/posts', (req, res) => {
   BlogPost
     .find()
